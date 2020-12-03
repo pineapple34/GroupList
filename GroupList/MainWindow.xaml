@@ -1,0 +1,80 @@
+﻿<Window x:Class="GroupList.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GroupList"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="400">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="110*"/>
+            <RowDefinition Height="133*"/>
+            <RowDefinition Height="176*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">
+            <Label Content="Выберите группу"/>
+            <ComboBox x:Name="groupList" SelectionChanged="ComboBox_SelectionChanged">
+                <ComboBoxItem Content="ИС-11"/>
+                <ComboBoxItem Content="ИС-12"/>
+                <ComboBoxItem Content="ИС-21"/>
+                <ComboBoxItem Content="ИС-22"/>
+            </ComboBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+            <Label Content="Список группы" />
+            <ListBox x:Name="lbGroupList"/>
+        </StackPanel>
+
+        <DataGrid x:Name="dgGroup" Grid.Row="1" Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Фамилия"/>
+                <DataGridTextColumn Header="Имя"/>
+                <DataGridTextColumn Header="Возраст"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TabControl Grid.Row="2" Grid.ColumnSpan="2">
+            <TabItem Header="Добавить студента">
+                <Grid>
+                    <StackPanel VerticalAlignment="Center">
+                        <Label Content="Фамилия"/>
+                        <TextBox x:Name="addSoname"/>
+                        <Label Content="Имя"/>
+                        <TextBox x:Name="addName"/>
+                        <Label Content="Возраст"/>
+                        <TextBox x:Name="addAge"/>
+                        <Button x:Name="addStudent" Content="Добавить" VerticalAlignment="Bottom" HorizontalAlignment="Right" 
+                            Click="addStudent_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Изменить данные">
+                <Grid>
+                    <StackPanel VerticalAlignment="Center">
+                        <Label Content="Фамилия"/>
+                        <TextBox x:Name="changeSoname"/>
+                        <Label Content="Имя"/>
+                        <TextBox x:Name="changeName"/>
+                        <Label Content="Возраст"/>
+                        <TextBox x:Name="changeAge"/>
+                        <Button x:Name="changeStudent" Content="Добавить" VerticalAlignment="Bottom" HorizontalAlignment="Right" 
+                            Click="changeStudent_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Удалить студента">
+                <Grid>
+                    <ListBox x:Name="delStudentList" ItemsSource="{Binding ElementName=lbGroupList, Path=Items}"/>
+                    <Button x:Name="delStudent" Content="Удалить" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
